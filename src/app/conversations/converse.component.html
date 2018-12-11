@@ -1,0 +1,10 @@
+<form #converseForm="ngForm" class="converse-container">
+  <h1 mat-dialog-title>{{data.heading}}</h1>
+  <mat-form-field>
+    <textarea required [disabled]="data.mode==='readOnly'" name="comments" maxlength="3000" matInput [(ngModel)]="data.comments" placeholder="Comments"></textarea>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-raised-button *ngIf="data.mode!=='readOnly'" [disabled]="converseForm.invalid" color="accent" [mat-dialog-close]="data" tabindex="2">{{data.submitButtonText}}</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,9 @@
+<h3>Chef Preferences</h3>
+<mat-list *ngIf="mode!=='read'">
+  <div *ngFor="let preference of chefPreferences">
+    <mat-list-item>
+      <mat-checkbox [(ngModel)]="preference.answer" (change)="updateChefPreferences(preference,$index)">{{preference.question}}</mat-checkbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

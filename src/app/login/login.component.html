@@ -1,0 +1,18 @@
+<mat-card class="login-card">
+  <mat-card-content>
+    <h2>Login</h2>
+    <form #loginForm="ngForm">
+      <div class="login-card-content">
+        <mat-form-field>
+          <input matInput name="email" pattern="\S+@\S+" [(ngModel)]="user.email" placeholder="Email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="password" [(ngModel)]="user.password" type="password" placeholder="Password" required>
+        </mat-form-field>
+      </div>
+      <div style="text-align:right">
+        <button type="submit" mat-raised-button color="accent" (click)="login()" [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

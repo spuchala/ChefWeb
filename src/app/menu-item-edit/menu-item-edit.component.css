@@ -1,0 +1,8 @@
+.menuItem-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menuItem-container > * {
+    width: 100%;
+  }

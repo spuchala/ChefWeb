@@ -1,0 +1,7 @@
+.register-user-card-content{
+    display: flex;
+    flex-direction: column;
+}
+.register-user-card-content>*{
+    width:100%
+}

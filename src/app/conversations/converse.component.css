@@ -1,0 +1,8 @@
+.converse-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .converse-container > * {
+    width: 100%;
+  }

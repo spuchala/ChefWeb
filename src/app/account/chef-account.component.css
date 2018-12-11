@@ -1,0 +1,7 @@
+.addToMenu-card-content{
+    display: flex;
+    flex-direction: column;
+}
+.addToMenu-card-content>*{
+    width:100%
+}

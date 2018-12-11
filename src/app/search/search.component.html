@@ -1,0 +1,19 @@
+<div class="search-container">
+  <h1 mat-dialog-title>Search for chefs</h1>
+  <mat-form-field>
+    <input matInput placeholder="What: Biryani, Masala etc" tabindex="1" [(ngModel)]="data.what">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Where: Reston, 20191 etc" tabindex="1" [matAutocomplete]="auto" [(ngModel)]="data.where">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let locationSugg of locationsSuggs" [value]="locationSugg">
+        <mat-icon>location_on</mat-icon>
+        <span>{{ locationSugg }}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]="data" tabindex="2">Search</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</div>

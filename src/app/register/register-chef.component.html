@@ -1,0 +1,5 @@
+<mat-card class="register-user-card">
+    <mat-card-content>
+        <app-register-user [disabled]="disabled" [mode]="mode" [userType]="userType" (onRegistered)="onRegistered($event)"></app-register-user>
+    </mat-card-content>
+</mat-card>

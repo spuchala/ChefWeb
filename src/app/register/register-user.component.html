@@ -1,0 +1,55 @@
+<h2 *ngIf="!disabled&&mode==='register'">
+  Register As {{userType}}</h2>
+<form #registerChef="ngForm">
+  <div class="register-user-card-content">
+    <mat-form-field>
+      <input matInput disabled="{{disabled}}" name="firstName" [(ngModel)]="user.firstName" placeholder="First Name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput disabled="{{disabled}}" name="lastName" [(ngModel)]="user.lastName" placeholder="Last Name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="email" disabled="{{disabled}}" matInput name="email" pattern="\S+@\S+" [(ngModel)]="user.email" placeholder="Email"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input disabled="{{disabled}}" pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" matInput name="phone" [(ngModel)]="user.phone"
+        placeholder="Phone" required>
+    </mat-form-field>
+    <mat-form-field *ngIf="!disabled&&mode==='register'">
+      <input pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$" type="password" matInput name="password"
+        [(ngModel)]="user.password" placeholder="Password" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input disabled="{{disabled}}" matInput name="address" [(ngModel)]="user.address" placeholder="Address" required>
+    </mat-form-field>
+    <div layout-gt-sm="row" class="layout-gt-sm-row">
+      <mat-form-field>
+        <input disabled="{{disabled}}" matInput name="city" [(ngModel)]="user.city" placeholder="City" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select disabled="{{disabled}}" placeholder="State" [(value)]="user.state" required>
+          <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input disabled="{{disabled}}" matInput name="zipCode" maxlength="5" [(ngModel)]="user.zipCode" placeholder="ZipCode" required>
+      </mat-form-field>
+    </div>
+    <mat-form-field *ngIf="userType==='chef'||userType==='Chef'">
+      <input matInput disabled="{{disabled}}" name="description" [(ngModel)]="user.description" placeholder="A Little Description About You" ng-required="userType==='chef'">
+    </mat-form-field>
+    <div *ngIf="!disabled&&mode==='register'" style="text-align:right">
+      <button type="submit" mat-raised-button color="accent" (click)="register()" [disabled]="registerChef.invalid">Register</button>
+    </div>
+    <div *ngIf="disabled&&mode=='edit'" style="text-align:right">
+      <button type="submit" mat-raised-button color="accent" (click)="disabled=false" [disabled]="registerChef.invalid">Edit</button>
+    </div>
+    <div *ngIf="!disabled&&mode==='edit'" style="text-align:right">
+      <button mat-button (click)="disabled=true">Cancel</button>
+      <button type="submit" mat-raised-button color="accent" (click)="save()" [disabled]="registerChef.invalid">Save</button>
+    </div>
+  </div>
+</form>

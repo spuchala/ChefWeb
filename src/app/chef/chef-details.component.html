@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-content>
+    <h2 *ngIf="chefDetails">{{chefDetails.firstName}} {{chefDetails.lastName}}</h2>
+    <mat-list>
+      <app-chef *ngIf="chefDetails" [chef]="chefDetails" [interactWithChef]="false"></app-chef>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <app-chef-specialities [chefId]="chefId" [disabled]="true"></app-chef-specialities>
+    <app-chef-menu [chefId]="chefId" [chefName]="chefName" [mode]="menuMode"></app-chef-menu>
+    <mat-divider></mat-divider>
+    <app-chef-reviews [chefId]="chefId"></app-chef-reviews>
+  </mat-card-content>
+</mat-card>

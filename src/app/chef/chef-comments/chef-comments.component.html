@@ -1,0 +1,17 @@
+<h3>Comments for customer</h3>
+<mat-list>
+  <div *ngFor="let commentData of comments">
+    <mat-list-item>
+      <p mat-line>
+        <span> {{commentData.comment}} </span>
+      </p>
+      <div>
+      </div>
+      &nbsp;
+      <button *ngIf="mode==='account'" (click)="removeComment(commentData,$index)" mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

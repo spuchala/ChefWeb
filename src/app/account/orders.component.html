@@ -1,0 +1,4 @@
+<p>
+  <app-chef-orders [userType]="role" *ngIf="role==='Chef'"></app-chef-orders>
+  <app-customer-orders [userType]="role" *ngIf="role==='Customer'"></app-customer-orders>
+</p>

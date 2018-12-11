@@ -1,0 +1,45 @@
+<mat-expansion-panel (click)="markBatchOrdersAsViewed(batch)" *ngFor="let batch of batches">
+  <mat-expansion-panel-header>
+    <mat-panel-title [ngClass]="{newOrders:ordersFor==='Chef'&&!batch.state.chefViewed,oldOrders:ordersFor==='Chef'&&batch.state.chefViewed}" *ngIf="ordersFor==='Chef'">
+      {{batch.createdBy.firstName}} {{batch.createdBy.lastName}} Orders
+    </mat-panel-title>
+    <mat-panel-title *ngIf="ordersFor==='Customer'">
+      {{batch.createdOn}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <button *ngIf="ordersFor==='Chef'" mat-raised-button color="accent" (click)="checkOut()">Customer Details</button>
+  <br/>
+  <br/>
+  <table mat-table [dataSource]="batch.orders" class="mat-elevation-z8">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let order"> {{order.menuItem.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="when">
+      <th mat-header-cell *matHeaderCellDef> When </th>
+      <td mat-cell *matCellDef="let order"> {{order.when}} </td>
+    </ng-container>
+    <ng-container matColumnDef="spiceLevel">
+      <th mat-header-cell *matHeaderCellDef> Spice Level </th>
+      <td mat-cell *matCellDef="let order"> {{order.spiceLevel}} </td>
+    </ng-container>
+    <ng-container matColumnDef="comments">
+      <th mat-header-cell *matHeaderCellDef> Comments </th>
+      <td mat-cell *matCellDef="let order"> {{order.comments}} </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let order"> {{order.menuItem.price | currency}} </td>
+    </ng-container>
+    <ng-container *ngIf="mode!=='readOnly'" matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let row">
+        <button (click)="deleteOrder(batch.id,row)" mat-icon-button color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-expansion-panel>

@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Orders</h2>
+    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="In Queue">
+        <br/>
+        <app-batch-orders *ngIf="batchOrdersInQueue" [ordersFor]="userType" [batches]="batchOrdersInQueue" [mode]="mode"></app-batch-orders>
+        <span *ngIf="!batchOrdersInQueue">No Orders in Queue</span>
+      </mat-tab>
+      <mat-tab label="In Process">
+        <br/>
+        <app-batch-orders *ngIf="batchOrdersInProcess" [ordersFor]="userType" [batches]="batchOrdersInProcess" [mode]=""></app-batch-orders>
+        <span *ngIf="!batchOrdersInProcess">No Orders in Process</span>
+      </mat-tab>
+      <mat-tab label="Completed">
+        <br/>
+        <app-batch-orders *ngIf="batchOrdersCompleted" [ordersFor]="userType" [batches]="batchOrdersCompleted" [mode]=""></app-batch-orders>
+        <span *ngIf="!batchOrdersCompleted">No Orders in Completed Status</span>
+      </mat-tab>
+      <mat-tab label="Deleted">
+        <br/>
+        <span *ngIf="!deletedOrders">No Orders Rejected</span>
+        <mat-list>
+          <mat-list-item *ngFor="let order of deletedOrders">
+            <h3 mat-line>{{order.menuItem.title}}</h3>
+            <p mat-line>
+              <span> by {{order.createdBy.firstName}} {{order.createdBy.lastName}}</span>
+            </p>
+            &nbsp;&nbsp;&nbsp;
+            <button (click)="getOrderRejectedComment(order.id)" mat-icon-button color="black">
+              <mat-icon>comment</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

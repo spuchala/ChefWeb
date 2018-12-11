@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+  }
+  .newOrders{
+   font-weight: bold;
+  }
+  .oldOrders{
+    font-weight: normal;
+  }

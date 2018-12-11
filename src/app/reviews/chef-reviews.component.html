@@ -1,0 +1,16 @@
+<h3>Reviews</h3>
+<mat-list *ngIf="reviews&&reviews.length>0">
+  <div *ngFor="let review of reviews">
+    <mat-list-item>
+      <h3 mat-line> {{review.reviewBy}} </h3>
+      <!-- <star-rating [starType]="'svg'" [rating]="review.rating"></star-rating> -->
+      <p mat-line>
+        <span> {{review.review}} </span>
+      </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>
+<div *ngIf="!reviews||reviews.length===0">
+  <span>No reviews</span>
+</div>

@@ -1,0 +1,8 @@
+.loginOrRegister-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .loginOrRegister-container > * {
+    width: 100%;
+  }

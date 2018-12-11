@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Account</h2>
+    <mat-tab-group>
+      <mat-tab label="Account">
+        <br/>
+        <app-register-user [disabled]="disabled" [mode]="mode" [user]="user" [userType]="userType"></app-register-user>
+      </mat-tab>
+      <mat-tab label="Specialities">
+        <br/>
+        <app-chef-specialities [chefId]="chefId"></app-chef-specialities>
+      </mat-tab>
+      <mat-tab label="Menu">
+        <br/>
+        <form #menu="ngForm">
+          <div class="addToMenu-card-content">
+            <mat-form-field>
+              <input matInput name="menuItem" [(ngModel)]="menuItem.title" placeholder="Menu Item" required>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="menuItemDescription" [(ngModel)]="menuItem.description" placeholder="Description">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="menuItemPrice" placeholder="Amount" type="number" [(ngModel)]="menuItem.price" class="example-right-align"
+                required>
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>
+          </div>
+          <div style="text-align:right">
+            <button type="submit" mat-raised-button color="accent" (click)="addMenuItem()" [disabled]="menu.invalid">Add</button>
+          </div>
+        </form>
+        <app-chef-menu [chefId]="chefId" [refresh]="menuItemAdded" [mode]="menuMode"></app-chef-menu>
+      </mat-tab>
+      <mat-tab label="Preferences">
+        <app-chef-preferences [chefId]="chefId" [mode]="preferencesMode"></app-chef-preferences>
+      </mat-tab>
+      <mat-tab label="Comments">
+        <form #comments="ngForm">
+          <div class="addToMenu-card-content">
+            <br/>
+            <mat-form-field>
+              <input matInput name="commentsDataComment" #message maxlength="8000" placeholder="Comments" [(ngModel)]="commentsData.comment" required>
+              <mat-hint align="start">
+                <strong>Any further comments for customer</strong>
+              </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 8000</mat-hint>
+            </mat-form-field>
+          </div>
+          <div style="text-align:right">
+            <button type="submit" mat-raised-button color="accent" (click)="addComment()" [disabled]="comments.invalid">Comment</button>
+          </div>
+        </form>
+        <app-chef-comments [chefId]="chefId" [refresh]="commentsAdded" [mode]="commentsMode"></app-chef-comments>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

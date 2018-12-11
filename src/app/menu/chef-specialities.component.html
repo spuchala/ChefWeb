@@ -1,0 +1,11 @@
+<h3 *ngIf="disabled">Specialities</h3>
+<mat-form-field class="specialities-chip-list">
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let speciality of specialities" [selectable]="selectable" [removable]="removable" (removed)="removeSpeciality(speciality)">
+      {{speciality.title}}
+      <mat-icon matChipRemove *ngIf="!disabled&&removable">cancel</mat-icon>
+    </mat-chip>
+    <input *ngIf="!disabled" placeholder="Specialities" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="addSpeciality($event)" />
+  </mat-chip-list>
+</mat-form-field>

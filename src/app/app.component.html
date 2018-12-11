@@ -1,0 +1,48 @@
+<div>
+  <mat-toolbar class="navbar-elevation" color="primary">
+    <mat-toolbar-row>
+      <div fxShow="true" fxHide.gt-sm="true">
+        <mat-icon (click)="sidenav.open()">menu</mat-icon>
+      </div>
+      <div class="navbar-header">
+        <a href="" class="mat-button-wrapper navbar-header-text">
+          <span>CH</span>
+          <mat-icon>restaurant</mat-icon>
+          <span>EF</span>
+        </a>
+      </div>
+      <span class="navbar-spacer"></span>
+      <div *ngIf="!isUserAuthenticated()" fxShow="true" fxHide.lt-md="true">
+        <a [routerLink]="['/login']" href="#" mat-button>Login</a>
+        <a href="#" [routerLink]="['/register']" mat-button>Register</a>
+      </div>
+      <button *ngIf="isSearchAvailable()" (click)="openSearch()" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button *ngIf="isUserAuthenticated()" [matMenuTriggerFor]="accountMenu" mat-icon-button>
+        <mat-icon>account_box</mat-icon>
+      </button>
+      <mat-menu #accountMenu="matMenu">
+        <button mat-menu-item [routerLink]="['/account/orders']">Orders</button>
+        <button mat-menu-item [routerLink]="['/account']">Profile</button>
+        <button mat-menu-item (click)="logOut()">Log Out</button>
+      </mat-menu>
+      <button *ngIf="getOrdersInCartCount()>0" [routerLink]="['/cart']" mat-icon-button>
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="badge">{{getOrdersInCartCount()}}</span>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav fxLayout="column">
+      <div fxLayout="column">
+        <a (click)="sidenav.close()" href="#" mat-button>Close</a>
+        <a *ngIf="!isUserAuthenticated()" [routerLink]="['/login']" href="#" mat-button>Login</a>
+        <a *ngIf="!isUserAuthenticated()" href="#" [routerLink]="['/register']" mat-button>Register</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill class="grey-roboto">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,23 @@
+<h3>Menu</h3>
+<mat-list>
+  <div *ngFor="let menuItem of menu">
+    <mat-list-item>
+      <h3 mat-line> {{menuItem.title}} </h3>
+      <p mat-line>
+        <span> {{menuItem.description}} </span>
+      </p>
+      <div>
+        {{menuItem.price}}$
+      </div>
+      &nbsp;&nbsp;&nbsp;
+      <button *ngIf="mode==='order'" color="accent" [disabled]="menuItem.disabled" (click)="openOrder(menuItem)" mat-raised-button>Order</button>
+      <button *ngIf="mode==='account'" (click)="editMenuItem(menuItem)" mat-icon-button color="black">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="mode==='account'" (click)="removeMenuItem(menuItem)" mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-content>
+    <h2>Chefs</h2>
+    <mat-list role="list">
+      <app-chef *ngFor="let chef of chefs" [chef]="chef" [interactWithChef]="true">
+        <mat-divider *ngIf="chefs.length>1"></mat-divider>
+      </app-chef>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

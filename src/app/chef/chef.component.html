@@ -1,0 +1,25 @@
+<mat-list-item role="listitem">
+  <img mat-list-avatar src="{{chef.image}}" alt="">
+  <h3 mat-line> {{chef.firstName}} {{chef.lastName}} </h3>
+  <div *ngIf="interactWithChef">
+    <button mat-tooltip="Message" (click)="showMessage=!showMessage" tooltip-position="below">
+      <mat-icon>message</mat-icon>
+    </button>
+    <button color="accent" (click)="showChefDetails()" mat-tooltip="Details" tooltip-position="below">
+      <mat-icon>list</mat-icon>
+    </button>
+  </div>
+  <p mat-line>
+    <span> {{chef.description}} </span><br/>
+    <mat-star-rating [rating]="starRating"  [starCount]="starCount" [readOnly]="ratingReadOnly" [color]="starColor"></mat-star-rating>
+  </p>
+</mat-list-item>
+<div *ngIf="interactWithChef">
+  <div class="leave-message" *ngIf="showMessage">
+    <mat-form-field style="width:95%">
+      <textarea matInput placeholder="Leave a message"></textarea>
+    </mat-form-field>
+    <button color="accent" mat-raised-button (click)="sendMessage()">Send</button>
+    <button mat-button (click)="showMessage=!showMessage">Cancel</button>
+  </div>  
+</div>

@@ -1,0 +1,29 @@
+<form #addressForm="ngForm">
+  <div class="address-content">
+    <mat-form-field>
+      <input matInput name="address" [(ngModel)]="user.address" placeholder="Address" required>
+    </mat-form-field>
+    <div layout-gt-sm="row" class="layout-gt-sm-row">
+      <mat-form-field>
+        <input matInput name="city" [(ngModel)]="user.city" placeholder="City" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="State" [(value)]="user.state" required>
+          <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="zipCode" maxlength="5" [(ngModel)]="user.zipCode" placeholder="ZipCode" required>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <input type="email" matInput name="email" pattern="\S+@\S+" [(ngModel)]="user.email" placeholder="Email" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" matInput name="phone" [(ngModel)]="user.phone" placeholder="Phone"
+        required>
+    </mat-form-field>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+<form #orderItem="ngForm" class="order-container">
+  <h1 mat-dialog-title>Order {{data.menuItem.title}}</h1>
+  <span>Spice Level</span>
+  <mat-slider name="spiceLevel" class="example-margin" [disabled]="false" [max]="5" [min]="1" [step]="1" [thumbLabel]="true" [tickInterval]="1"
+    [(ngModel)]="data.spiceLevel">
+  </mat-slider>
+  <mat-form-field>
+      <input matInput name="quantity" type="number" [(ngModel)]="data.quantity" placeholder="Quantity" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input [min]="minDate" name="when" [(ngModel)]="data.when" (dateInput)="whenToOrder($event)" (dateChange)="whenToOrder($event)" matInput [matDatepicker]="picker"
+      placeholder="When" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea name="comments" maxlength="3000" matInput [(ngModel)]="data.comments" placeholder="Any Comments"></textarea>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="accent" [disabled]="orderItem.invalid" [mat-dialog-close]="data" tabindex="2">{{addButtonTitle}}</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</form>
